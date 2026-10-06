@@ -55,7 +55,7 @@ a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{c
 
 <style>
 .gonve-chat-toggle{position:fixed;right:22px;bottom:92px;z-index:65;width:58px;height:58px;border:0;border-radius:50%;background:linear-gradient(145deg,var(--primary),#b98a4f);color:#fff;box-shadow:0 14px 38px rgba(82,55,28,.28);display:grid;place-items:center;font-size:25px}
-.gonve-chat-toggle::after{content:'';position:absolute;inset:-5px;border:1px solid color-mix(in srgb,var(--primary) 30%,transparent);border-radius:50%}
+.gonve-chat-toggle::after{content:'';position:absolute;inset:-5px;border:1px solid color-mix(in srgb,var(--primary) 30%,transparent);border-radius:50%}.gonve-chat-toggle svg{width:31px;height:31px;overflow:visible}.gonve-chat-toggle .chat-bubble{fill:none;stroke:#fff;stroke-width:4;stroke-linejoin:round}.gonve-chat-toggle .chat-lotus{fill:#fff}
 .gonve-chat{position:fixed;right:22px;bottom:162px;z-index:66;width:min(390px,calc(100vw - 28px));height:min(610px,72vh);background:var(--surface);border:1px solid var(--border);border-radius:24px;box-shadow:0 26px 80px rgba(42,31,21,.24);display:none;overflow:hidden}
 .gonve-chat.open{display:flex;flex-direction:column}
 .gonve-chat-head{display:flex;align-items:center;justify-content:space-between;padding:16px 17px;background:linear-gradient(120deg,var(--primary),color-mix(in srgb,var(--primary) 78%,#2d2117));color:#fff}
@@ -192,7 +192,12 @@ a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{c
   </footer>
 
 
-  <button class="gonve-chat-toggle" id="gonveChatToggle" aria-label="Abrir assistente de produtos" title="Posso te ajudar a escolher">💬</button>
+  <button class="gonve-chat-toggle" id="gonveChatToggle" aria-label="Abrir assistente de produtos" title="Posso te ajudar a escolher">
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path class="chat-bubble" d="M12 10h40a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H30L18 59v-9h-6a8 8 0 0 1-8-8V18a8 8 0 0 1 8-8Z"/>
+    <path class="chat-lotus" d="M32 19c-4 5-5 10 0 15 5-5 4-10 0-15Zm-3 14c-5-6-10-6-13-5 2 7 7 10 13 9-4-2-7-5-9-8 4 1 7 2 9 4Zm6 0c5-6 10-6 13-5-2 7-7 10-13 9 4-2 7-5 9-8-4 1-7 2-9 4Zm-3 5c-5 0-10-1-14-4 3 6 7 9 14 10 7-1 11-4 14-10-4 3-9 4-14 4Z"/>
+  </svg>
+</button>
   <section class="gonve-chat" id="gonveChat" aria-hidden="true">
     <div class="gonve-chat-head">
       <div><strong>Assistente Gonvé</strong><small>Te ajudo a encontrar o produto ideal</small></div>
@@ -400,11 +405,30 @@ const defaults=[
   {"id": "p20", "name": "Soul Skin Mousse Micelar Anti Oleosidade", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 2, "description": "Mousse de limpeza facial que remove impurezas e auxilia no controle da oleosidade, deixando sensação de frescor.", "size": "150ml", "benefit": "Limpeza e controle da oleosidade", "use": "Peles mistas e oleosas", "featured": false, "image": "assets/soul-mousse-micelar.webp"},
   {"id": "p21", "name": "Lapop Honey Skin Óleo Facial", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Óleo facial nutritivo e hidratante para complementar a rotina de cuidados e deixar a pele com toque macio.", "size": "30ml", "benefit": "Nutrição e hidratação", "use": "Rotina facial", "featured": false, "image": "assets/lapop-honey-skin.webp"}
 ];
-let products=JSON.parse(localStorage.getItem(LS.products)||'null')||defaults.map(p=>({...p}));
-let theme=JSON.parse(localStorage.getItem(LS.theme)||'null')||{...defaultTheme};
-let store=JSON.parse(localStorage.getItem(LS.store)||'null')||{...defaultStore};
-let cart=JSON.parse(localStorage.getItem(LS.cart)||'[]');
-let savedCategories=JSON.parse(localStorage.getItem(LS.categories)||'null')||[];
+const LEGACY_DEMO_PRODUCTS=new Set(['gloss glow','body splash bloom','hidratante soft skin','kit presente gonve','lip tint rose','sabonete facial gentle','perfume pocket','necessaire gonve']);
+function readStorageJSON(key,fallback=null){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch{return fallback}}
+function productKey(p){const id=String(p?.id||'').trim();if(id)return 'id:'+id;return 'name:'+normalizeChatText(p?.name||'')}
+function mergeProductLists(...lists){
+  const map=new Map();
+  for(const list of lists){
+    if(!Array.isArray(list))continue;
+    for(const item of list){
+      if(!item||!item.name)continue;
+      if(LEGACY_DEMO_PRODUCTS.has(normalizeChatText(item.name)))continue;
+      const key=productKey(item);
+      map.set(key,{...(map.get(key)||{}),...item});
+    }
+  }
+  return [...map.values()];
+}
+const legacyProducts=readStorageJSON('gonve_products_v1',[]);
+const currentProducts=readStorageJSON(LS.products,[]);
+let products=mergeProductLists(defaults,legacyProducts,currentProducts);
+let theme=readStorageJSON(LS.theme,{...defaultTheme})||{...defaultTheme};
+let store=readStorageJSON(LS.store,{...defaultStore})||{...defaultStore};
+let cart=readStorageJSON(LS.cart,[])||[];
+const legacyCategories=readStorageJSON('gonve_categories_v1',[]);
+let savedCategories=[...(Array.isArray(legacyCategories)?legacyCategories:[]),...(readStorageJSON(LS.categories,[])||[])];
 let activeCategory='Todos';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const money=v=>Number(v||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
@@ -603,35 +627,54 @@ function normalizeChatText(v){
   return String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9\s]/g,' ').replace(/\s+/g,' ').trim();
 }
 const CHAT_INTENTS=[
-  {keys:['seca','ressecada','descascando','repuxando','sem hidratacao','pele seca'],terms:['hidrata','hidrat','hyaluronic','hialuron','colageno','honey skin','rosa mosqueta','cereja','avela']},
-  {keys:['oleosa','oleosidade','espinha','espinhas','acne','cravo','cravos','poros','pele gordurosa'],terms:['antiacne','secativo','mousse micelar','oleosidade','salicilico','peeling']},
-  {keys:['olheira','olheiras','olho cansado','area dos olhos'],terms:['olheira','suavizador']},
-  {keys:['mancha','manchas','tom desigual','uniformizar','uniforme','clarear','pele manchada'],terms:['uniformizador','retinol','q-10','vitamina c']},
-  {keys:['ruga','rugas','linha','linhas','firmeza','idade','anti idade'],terms:['bioretinol','retinol','colageno','q-10']},
-  {keys:['maquiagem','make','primer','preparar pele','fixar','fixacao'],terms:['primer','blindagem','fixador','base','po facial','po banana']},
-  {keys:['mao seca','maos secas','mao ressecada','maos ressecadas'],terms:['creme para as maos','melu','banana']},
-  {keys:['corpo seco','pele do corpo seca','hidratante corporal','corpo ressecado'],terms:['apiderm','rosa mosqueta','cereja','avela']},
-  {keys:['brilho','selar maquiagem','pele brilhando'],terms:['po banana','translucido','matte']},
-  {keys:['limpar rosto','limpeza facial','lavar rosto'],terms:['mousse micelar','limpeza','anti oleosidade']}
+  {name:'hidratação facial',keys:['seca','ressecada','descascando','repuxando','sem hidratacao','pele seca','pele opaca','sem vico'],terms:['hidrata','hidrat','hyaluronic','hialuron','colageno','honey skin','rosa mosqueta'],category:['skincare']},
+  {name:'oleosidade e acne',keys:['oleosa','oleosidade','espinha','espinhas','acne','cravo','cravos','poros','pele gordurosa','brilhando muito'],terms:['antiacne','secativo','mousse micelar','oleosidade','salicilico','peeling'],category:['skincare']},
+  {name:'olheiras',keys:['olheira','olheiras','olho cansado','area dos olhos','embaixo dos olhos'],terms:['olheira','suavizador'],category:['skincare']},
+  {name:'uniformização',keys:['mancha','manchas','tom desigual','uniformizar','uniforme','clarear','pele manchada','marquinhas'],terms:['uniformizador','retinol','q-10','vitamina c'],category:['skincare']},
+  {name:'linhas e firmeza',keys:['ruga','rugas','linha','linhas','firmeza','idade','anti idade','flacidez'],terms:['bioretinol','retinol','colageno','q-10'],category:['skincare']},
+  {name:'preparo de maquiagem',keys:['maquiagem','make','primer','preparar pele','fixar','fixacao','durar mais'],terms:['primer','blindagem','fixador','base','po facial','po banana'],category:['maquiagem']},
+  {name:'mãos ressecadas',keys:['mao seca','maos secas','mao ressecada','maos ressecadas','creme para mao','creme para as maos'],terms:['creme para as maos','melu','banana'],category:['autocuidado']},
+  {name:'hidratação corporal',keys:['corpo seco','pele do corpo seca','hidratante corporal','corpo ressecado','pele corporal seca'],terms:['apiderm','rosa mosqueta','cereja','avela'],category:['corpo']},
+  {name:'controle de brilho',keys:['brilho','selar maquiagem','pele brilhando','finalizar maquiagem','finalizar make'],terms:['po banana','translucido','matte'],category:['maquiagem']},
+  {name:'limpeza facial',keys:['limpar rosto','limpeza facial','lavar rosto','limpador facial'],terms:['mousse micelar','limpeza','anti oleosidade'],category:['skincare']}
 ];
+const chatState={lastQuery:'',lastIntent:'',lastProducts:[]};
+function extractBudget(q){
+  const m=q.match(/(?:ate|até|menos de|no maximo|maximo de|por ate|por até)\s*(?:r\$\s*)?(\d+(?:[\.,]\d+)?)/i);
+  return m?Number(m[1].replace(',','.')):null;
+}
 function productSearchText(p){return normalizeChatText([p.name,p.category,p.description,p.benefit,p.use,p.size,p.tones].filter(Boolean).join(' '))}
+function detectIntent(q){
+  const matches=CHAT_INTENTS.map(i=>({intent:i,score:i.keys.reduce((n,k)=>n+(q.includes(normalizeChatText(k))?1:0),0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+  return matches[0]?.intent||null;
+}
 function recommendProducts(query){
   const q=normalizeChatText(query);
-  let terms=[];
-  CHAT_INTENTS.forEach(i=>{if(i.keys.some(k=>q.includes(normalizeChatText(k))))terms.push(...i.terms)});
+  const intent=detectIntent(q);
+  const budget=extractBudget(query);
+  const wantsCheapest=/mais barato|mais em conta|baratinho|barato|menor preco/.test(q);
   const direct=q.split(' ').filter(x=>x.length>3);
+  let terms=intent?[...intent.terms]:[];
+  let categoryTerms=intent?[...(intent.category||[])]:[];
   const scored=products.filter(p=>Number(p.stock)>0).map(p=>{
     const t=productSearchText(p);let score=0;
-    terms.forEach(k=>{if(t.includes(normalizeChatText(k)))score+=4});
+    terms.forEach(k=>{if(t.includes(normalizeChatText(k)))score+=5});
+    categoryTerms.forEach(k=>{if(normalizeChatText(p.category).includes(normalizeChatText(k)))score+=2});
     direct.forEach(k=>{if(t.includes(k))score+=1});
+    if(q.includes(normalizeChatText(p.name)))score+=12;
+    if(p.benefit&&q.includes(normalizeChatText(p.benefit)))score+=4;
     if(p.featured)score+=.15;
+    if(budget!==null&&Number(p.price)>budget)score-=20;
     return {p,score};
-  }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
-  return scored.slice(0,3).map(x=>x.p);
+  }).filter(x=>x.score>0);
+  scored.sort((a,b)=>wantsCheapest?(Number(a.p.price)-Number(b.p.price)||b.score-a.score):(b.score-a.score||Number(a.p.price)-Number(b.p.price)));
+  const result=scored.slice(0,3).map(x=>x.p);
+  chatState.lastQuery=query;chatState.lastIntent=intent?.name||'';chatState.lastProducts=result;
+  return result;
 }
 function chatProductCards(list){
   if(!list.length)return '';
-  return '<div class="gonve-chat-products">'+list.map(p=>'<div class="gonve-chat-product"><img src="'+(p.image||placeholder(p.name))+'" alt="'+p.name+'"><div><strong>'+p.name+'</strong><small>'+money(p.price)+(p.benefit?' • '+p.benefit:'')+'</small><button type="button" onclick="addToCart(\''+p.id+'\')">Adicionar ao carrinho</button></div></div>').join('')+'</div>';
+  return '<div class="gonve-chat-products">'+list.map(p=>'<div class="gonve-chat-product"><img src="'+(p.image||placeholder(p.name))+'" alt="'+p.name+'"><div><strong>'+p.name+'</strong><small>'+money(p.price)+(p.benefit?' • '+p.benefit:'')+(p.size?' • '+p.size:'')+'</small><button type="button" onclick="addToCart(\''+p.id+'\')">Adicionar ao carrinho</button></div></div>').join('')+'</div>';
 }
 function addChatMessage(text,who='bot',productsList=[]){
   const box=$('#gonveChatMessages');if(!box)return;
@@ -639,20 +682,40 @@ function addChatMessage(text,who='bot',productsList=[]){
   if(productsList.length){const wrap=document.createElement('div');wrap.innerHTML=chatProductCards(productsList);row.appendChild(wrap.firstElementChild);}
   box.scrollTop=box.scrollHeight;
 }
+function describeLastProductUse(q){
+  if(!chatState.lastProducts.length)return false;
+  if(!/como usar|quando usar|modo de usar|qual horario|de manha|a noite|antes da make|depois/.test(q))return false;
+  const p=chatState.lastProducts[0];
+  const use=p.use||'seguir as orientações do rótulo';
+  addChatMessage('Para o '+p.name+', a indicação cadastrada é: '+use+'. Se o rótulo trouxer uma orientação mais específica, siga o rótulo.','bot');
+  return true;
+}
 function chatbotReply(message){
   const q=normalizeChatText(message);
   if(!q)return;
-  const picks=recommendProducts(q);
+  if(describeLastProductUse(q))return;
+  const risky=/dor forte|ferida|sangr|alergia forte|inchaco|infecc|queimadura|coceira intensa|machucado/.test(q);
+  if(risky){
+    addChatMessage('Quero te orientar com cuidado 💛 Para dor forte, ferida, inchaço, alergia importante ou irritação persistente, o melhor é procurar um profissional de saúde antes de usar cosméticos.','bot');
+    return;
+  }
+  const picks=recommendProducts(message);
+  const intent=detectIntent(q);
+  const budget=extractBudget(message);
   let intro='';
-  if(q.includes('seca')||q.includes('ressec')) intro='Para pele seca, eu procuraria produtos mais hidratantes e nutritivos. Separei estas opções do nosso catálogo:';
-  else if(q.includes('oleos')||q.includes('espinha')||q.includes('acne')||q.includes('cravo')) intro='Para oleosidade, cravos ou espinhas, estas opções do catálogo combinam melhor com o que você descreveu:';
-  else if(q.includes('olheira')) intro='Para cuidar da aparência das olheiras, esta é a opção mais direcionada que temos no catálogo:';
-  else if(q.includes('maqui')||q.includes('make')||q.includes('primer')) intro='Para preparar ou finalizar a maquiagem, eu te indicaria estas opções:';
-  else if(q.includes('ruga')||q.includes('firmeza')||q.includes('linha')) intro='Para uma rotina voltada à aparência de linhas e firmeza, estas opções fazem mais sentido:';
-  else intro=picks.length?'Entendi 💛 Olhando todos os produtos disponíveis na Gonvé, eu começaria por estas opções:':'Não encontrei uma combinação bem clara para isso no catálogo atual. Me conta um pouco mais: é para rosto, corpo, mãos ou maquiagem?';
+  if(intent?.name==='hidratação facial') intro='Entendi 💛 Para uma pele mais seca ou sem viço, eu priorizaria hidratação e nutrição. Estas são as melhores opções disponíveis agora:';
+  else if(intent?.name==='oleosidade e acne') intro='Para pele oleosa, cravinhos ou espinhas, eu buscaria limpeza e controle de oleosidade sem exagerar. Estas opções combinam melhor com o que você contou:';
+  else if(intent?.name==='olheiras') intro='Para a região dos olhos, temos uma opção bem direcionada para a aparência das olheiras:';
+  else if(intent?.name==='preparo de maquiagem') intro='Para preparar a pele e fazer a maquiagem durar mais, eu escolheria entre estas opções:';
+  else if(intent?.name==='hidratação corporal') intro='Para o corpo ressecado, eu escolheria uma loção hidratante. Estas estão disponíveis:';
+  else if(intent?.name==='mãos ressecadas') intro='Para mãos ressecadas, esta opção é a mais direta do catálogo:';
+  else if(intent?.name==='linhas e firmeza') intro='Para uma rotina focada na aparência de linhas e firmeza, eu olharia estas opções:';
+  else intro=picks.length?'Entendi 😊 Li o catálogo disponível e separei as opções que mais combinam com o que você pediu:':'Ainda não consegui identificar exatamente o que você procura. Me conta: é para rosto, corpo, mãos ou maquiagem?';
+  if(budget!==null&&picks.length) intro+=' E mantive a busca dentro de aproximadamente '+money(budget)+'.';
   addChatMessage(intro,'bot',picks);
-  if((q.includes('dor')||q.includes('ferida')||q.includes('alerg')||q.includes('coceira forte')||q.includes('infecc'))){
-    addChatMessage('Se tiver dor, ferida, alergia forte ou irritação persistente, o ideal é não tentar tratar só com cosméticos e procurar orientação de um profissional de saúde.','bot');
+  if(picks.length){
+    const reasons=picks.map(p=>p.name+': '+(p.benefit||p.description)).join('\n• ');
+    addChatMessage('Por quê eu escolhi:\n• '+reasons,'bot');
   }
 }
 function openGonveChat(){
@@ -666,7 +729,7 @@ $('#gonveChatClose')?.addEventListener('click',closeGonveChat);
 $('#gonveChatForm')?.addEventListener('submit',e=>{e.preventDefault();const input=$('#gonveChatInput');const v=input.value.trim();if(!v)return;addChatMessage(v,'user');input.value='';setTimeout(()=>chatbotReply(v),180)});
 $('[data-chat-suggestion]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.chatSuggestion;addChatMessage(v,'user');setTimeout(()=>chatbotReply(v),120)}));
 
-savedCategories=uniqueCategories();applyTheme();applyStore();render();save(false);updateFulfillment();loadCentralCatalog();
+savedCategories=uniqueCategories();save(false);applyTheme();applyStore();render();updateFulfillment();loadCentralCatalog();
 
 // Garante que a loja pública seja a tela inicial.
 const __adminInitial = document.getElementById('adminPanel');
