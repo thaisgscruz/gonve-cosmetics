@@ -495,9 +495,9 @@ function getFulfillment(){return document.querySelector('input[name="fulfillment
 function updateFulfillment(){
   const mode=getFulfillment();
   $('#addressWrap')?.classList.toggle('hidden',mode==='Retirada');
-  $('.fulfillment-card').forEach(c=>c.classList.toggle('selected',c.querySelector('input')?.checked));
+  $$('.fulfillment-card').forEach(c=>c.classList.toggle('selected',c.querySelector('input')?.checked));
 }
-$('input[name="fulfillment"]').forEach(i=>i.addEventListener('change',updateFulfillment));
+$$('input[name="fulfillment"]').forEach(i=>i.addEventListener('change',updateFulfillment));
 function getCheckoutTotals(){const subtotal=getCartSubtotal();const pix=getPayment()==='PIX';const discount=pix?subtotal*.05:0;return {subtotal,discount,total:subtotal-discount}}
 function updateCheckoutSummary(){const {subtotal,discount,total}=getCheckoutTotals();$('#checkoutSubtotal').textContent=money(subtotal);$('#checkoutDiscount').textContent=`- ${money(discount)}`;$('#cartTotal').textContent=money(total);$('#checkoutDiscountRow').classList.toggle('inactive',discount<=0);}
 function renderCart(){let count=0;$('#cartItems').innerHTML=cart.map(i=>{const p=products.find(x=>x.id===i.id);if(!p)return '';count+=i.qty;return `<div class="cart-item"><img src="${p.image||placeholder(p.name)}" alt="${p.name}"><div><h4>${p.name}</h4><small>${money(p.price)} cada</small><div class="qty"><button type="button" aria-label="Diminuir quantidade" onclick="cartQty('${p.id}',-1)">−</button><b>${i.qty}</b><button type="button" aria-label="Aumentar quantidade" onclick="cartQty('${p.id}',1)">+</button></div></div><strong>${money(p.price*i.qty)}</strong></div>`}).join('')||'<div class="empty">Seu carrinho está vazio.</div>';$('#cartCount').textContent=count;updateCheckoutSummary();}
@@ -729,7 +729,7 @@ function closeGonveChat(){$('#gonveChat').classList.remove('open');$('#gonveChat
 $('#gonveChatToggle')?.addEventListener('click',openGonveChat);
 $('#gonveChatClose')?.addEventListener('click',closeGonveChat);
 $('#gonveChatForm')?.addEventListener('submit',e=>{e.preventDefault();const input=$('#gonveChatInput');const v=input.value.trim();if(!v)return;addChatMessage(v,'user');input.value='';setTimeout(()=>chatbotReply(v),180)});
-$('[data-chat-suggestion]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.chatSuggestion;addChatMessage(v,'user');setTimeout(()=>chatbotReply(v),120)}));
+$$('[data-chat-suggestion]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.chatSuggestion;addChatMessage(v,'user');setTimeout(()=>chatbotReply(v),120)}));
 
 savedCategories=uniqueCategories();save(false);applyTheme();applyStore();render();updateFulfillment();loadCentralCatalog();
 
