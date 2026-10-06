@@ -334,34 +334,34 @@ const LS = {
   products:'gonve_products_v2', theme:'gonve_theme_v1', store:'gonve_store_v1', cart:'gonve_cart_v1', pass:'gonve_admin_pass_v1', categories:'gonve_categories_v2'
 };
 const defaultTheme={primary:'#8f6b3c',secondary:'#eadfce',background:'#fffaf4',text:'#2d2926',heroTitle:'Beleza que combina com você.',heroSubtitle:'Uma curadoria de cosméticos para deixar sua rotina mais bonita, leve e especial.'};
-const defaultStore={name:'Gonvé Cosmetics',phone:'5511997693480',location:'Barueri • SP',instagram:'@gonve_cosmetics'};
+const defaultStore={name:'Gonvé Cosmetics',phone:'5511997693480',location:'Barueri • SP',instagram:'@gonve_cosmetics',deliveryAreas:'Barueri e região',deliveryDeadline:'Prazo e frete confirmados conforme o CEP antes do pagamento.',pickupInfo:'Retirada em Barueri com local e horário combinados pelo WhatsApp.',hours:'Consulte o horário disponível pelo WhatsApp.',reviews:[]};
 const placeholder=(name,accent='#c7a775')=>`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f6efe8"/><stop offset="1" stop-color="#ddd0c0"/></linearGradient></defs><rect width="800" height="800" fill="url(#g)"/><circle cx="400" cy="350" r="190" fill="${accent}" opacity=".12"/><rect x="275" y="180" rx="56" width="250" height="430" fill="#fff" opacity=".92"/><rect x="315" y="235" rx="24" width="170" height="230" fill="${accent}" opacity=".85"/><text x="400" y="520" text-anchor="middle" font-family="Georgia" font-size="34" fill="#493d33">GONVÉ</text><text x="400" y="560" text-anchor="middle" font-family="Arial" font-size="18" fill="#796d64">${name}</text></svg>`)}`;
 const defaults=[
-  {"id": "p01", "name": "DermaChem Efeito Secativo", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 2, "description": "Ideal para pele oleosa. Ajuda a cuidar da aparência de cravos, espinhas e excesso de oleosidade no dia a dia.", "featured": true, "image": "assets/dermachem-efeito-secativo.webp"},
-  {"id": "p02", "name": "DermaChem Hyaluronic 1,5%", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 1, "description": "Sérum com ácido hialurônico que auxilia na hidratação, maciez e aparência mais viçosa da pele.", "featured": true, "image": "assets/dermachem-hyaluronic.webp"},
-  {"id": "p03", "name": "DermaChem Bioretinol", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 1, "description": "Sérum facial para complementar a rotina de cuidados, ajudando na aparência da textura, firmeza e linhas da pele.", "featured": true, "image": "assets/dermachem-bioretinol.webp"},
-  {"id": "p04", "name": "Max Love Primer 3 em 1", "category": "Maquiagem", "price": 12, "oldPrice": null, "stock": 2, "description": "Prepara e hidrata a pele antes da maquiagem, ajudando a deixar a make com acabamento mais bonito.", "featured": true, "image": "assets/maxlove-primer-3em1.webp"},
-  {"id": "p05", "name": "Max Love Óleo de Rosa Mosqueta 100% Puro", "category": "Autocuidado", "price": 12, "oldPrice": null, "stock": 2, "description": "Óleo versátil para cuidados com rosto, corpo, cabelos e unhas, ideal para hidratação e nutrição.", "featured": false, "image": "assets/maxlove-oleo-rosa-mosqueta.webp"},
-  {"id": "p06", "name": "Melu Made In! Creme para as Mãos Banana", "category": "Autocuidado", "price": 20, "oldPrice": null, "stock": 1, "description": "Creme para mãos ressecadas que ajuda a hidratar e deixar a pele mais macia e confortável.", "featured": false, "image": "assets/melu-creme-maos-banana.webp"},
-  {"id": "p07", "name": "Pó Banana Yoyo Maquiamor", "category": "Maquiagem", "price": 12, "oldPrice": null, "stock": 2, "description": "Pó facial de efeito matte que ajuda a selar a maquiagem e controlar o brilho da pele.", "featured": true, "image": "assets/po-banana-yoyo.webp"},
-  {"id": "p08", "name": "Apiderm Cereja & Avelã", "category": "Corpo", "price": 15, "oldPrice": null, "stock": 1, "description": "Loção corporal para nutrição e hidratação, ideal para deixar a pele macia e bem cuidada.", "featured": false, "image": "assets/apiderm-cereja-avela.webp"},
-  {"id": "p09", "name": "Apiderm Rosa Mosqueta", "category": "Corpo", "price": 15, "oldPrice": null, "stock": 3, "description": "Loção corporal com rosa mosqueta para hidratação e restauração, deixando a pele macia e iluminada.", "featured": false, "image": "assets/apiderm-rosa-mosqueta.webp"},
-  {"id": "p10", "name": "Toque Special Blindagem 3 em 1", "category": "Maquiagem", "price": 20, "oldPrice": null, "stock": 1, "description": "Primer, fixador e diluidor para maquiagem. Ajuda na preparação e na durabilidade da make.", "featured": true, "image": "assets/toque-special-blindagem.webp"},
-  {"id": "p11", "name": "Max Love Pó Facial Translúcido Vegano", "category": "Maquiagem", "price": 17, "oldPrice": null, "stock": 1, "description": "Finaliza a maquiagem com efeito matte, toque aveludado e aparência suave com efeito soft focus.", "featured": true, "image": "assets/maxlove-po-translucido.webp"},
-  {"id": "p12", "name": "Max Love Sérum Facial Peeling AHA 5% + BHA 1%", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Sérum esfoliante que auxilia na renovação da pele, na textura e na aparência dos poros.", "featured": false, "image": "assets/maxlove-peeling.webp"},
-  {"id": "p13", "name": "Bio Instinto Caneta de Velho", "category": "Autocuidado", "price": 12, "oldPrice": null, "stock": 2, "description": "Pomada cosmética massageadora com sensação refrescante, indicada para massagens corporais e conforto.", "featured": false, "image": "assets/bioinstinto-caneta-velho.webp"},
-  {"id": "p14", "name": "Max Love Sérum Uniformizador Retinol + Q-10", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Ajuda a deixar a pele com aparência mais uniforme, hidratada e luminosa na rotina de cuidados.", "featured": false, "image": "assets/maxlove-uniformizador.webp"},
-  {"id": "p15", "name": "Max Love Sérum Bioativo Antiacne 10 em 1", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Indicado para peles oleosas e acneicas, auxiliando no controle da oleosidade e na aparência da textura.", "featured": false, "image": "assets/maxlove-antiacne.webp"},
-  {"id": "p16", "name": "Max Love Sérum Facial Colágeno", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Sérum facial que auxilia na hidratação e deixa a pele com aparência macia e saudável.", "featured": false, "image": "assets/maxlove-colageno.webp"},
-  {"id": "p17", "name": "Max Love Sérum Suavizador de Olheiras", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Cuidado para a região dos olhos que ajuda a deixar o olhar com aparência mais descansada e iluminada.", "featured": false, "image": "assets/maxlove-olheiras.webp"},
-  {"id": "p18", "name": "Max Love Princesa das Bases - Alta Cobertura Matte", "category": "Maquiagem", "price": 20, "oldPrice": null, "stock": 5, "description": "Base líquida de alta cobertura e acabamento matte para ajudar a uniformizar o tom da pele.", "featured": true, "image": "assets/maxlove-princesa-bases.webp"},
-  {"id": "p19", "name": "Max Love Base Líquida Matte FPS 35 / FPUVA 13", "category": "Maquiagem", "price": 25, "oldPrice": null, "stock": 2, "description": "Base de alta cobertura com acabamento matte e proteção FPS 35 e FPUVA 13 para uso diário.", "featured": true, "image": "assets/maxlove-base-fps35.webp"},
-  {"id": "p20", "name": "Soul Skin Mousse Micelar Anti Oleosidade", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 2, "description": "Mousse de limpeza facial que remove impurezas e auxilia no controle da oleosidade, deixando sensação de frescor.", "featured": false, "image": "assets/soul-mousse-micelar.webp"},
-  {"id": "p21", "name": "Lapop Honey Skin Óleo Facial", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Óleo facial nutritivo e hidratante para complementar a rotina de cuidados e deixar a pele com toque macio.", "featured": false, "image": "assets/lapop-honey-skin.webp"}
+  {"id": "p01", "name": "DermaChem Efeito Secativo", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 2, "description": "Ideal para pele oleosa. Ajuda a cuidar da aparência de cravos, espinhas e excesso de oleosidade no dia a dia.", "size": "30ml", "benefit": "Controle da oleosidade", "use": "Peles oleosas e acneicas", "featured": true, "image": "assets/dermachem-efeito-secativo.webp"},
+  {"id": "p02", "name": "DermaChem Hyaluronic 1,5%", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 1, "description": "Sérum com ácido hialurônico que auxilia na hidratação, maciez e aparência mais viçosa da pele.", "size": "30ml", "benefit": "Hidratação e viço", "use": "Uso facial diário", "featured": true, "image": "assets/dermachem-hyaluronic.webp"},
+  {"id": "p03", "name": "DermaChem Bioretinol", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 1, "description": "Sérum facial para complementar a rotina de cuidados, ajudando na aparência da textura, firmeza e linhas da pele.", "size": "30ml", "benefit": "Textura e firmeza", "use": "Rotina de cuidados faciais", "featured": true, "image": "assets/dermachem-bioretinol.webp"},
+  {"id": "p04", "name": "Max Love Primer 3 em 1", "category": "Maquiagem", "price": 12, "oldPrice": null, "stock": 2, "description": "Prepara e hidrata a pele antes da maquiagem, ajudando a deixar a make com acabamento mais bonito.", "size": "30ml", "benefit": "Prepara e hidrata", "use": "Antes da maquiagem", "featured": true, "image": "assets/maxlove-primer-3em1.webp"},
+  {"id": "p05", "name": "Max Love Óleo de Rosa Mosqueta 100% Puro", "category": "Autocuidado", "price": 12, "oldPrice": null, "stock": 2, "description": "Óleo versátil para cuidados com rosto, corpo, cabelos e unhas, ideal para hidratação e nutrição.", "size": "10ml", "benefit": "Nutrição e hidratação", "use": "Rosto, corpo, cabelos e unhas", "featured": false, "image": "assets/maxlove-oleo-rosa-mosqueta.webp"},
+  {"id": "p06", "name": "Melu Made In! Creme para as Mãos Banana", "category": "Autocuidado", "price": 20, "oldPrice": null, "stock": 1, "description": "Creme para mãos ressecadas que ajuda a hidratar e deixar a pele mais macia e confortável.", "size": "50g", "benefit": "Mãos macias e hidratadas", "use": "Mãos ressecadas", "featured": false, "image": "assets/melu-creme-maos-banana.webp"},
+  {"id": "p07", "name": "Pó Banana Yoyo Maquiamor", "category": "Maquiagem", "price": 12, "oldPrice": null, "stock": 2, "description": "Pó facial de efeito matte que ajuda a selar a maquiagem e controlar o brilho da pele.", "size": "13g", "benefit": "Efeito matte", "use": "Finalização da maquiagem", "featured": true, "image": "assets/po-banana-yoyo.webp"},
+  {"id": "p08", "name": "Apiderm Cereja & Avelã", "category": "Corpo", "price": 15, "oldPrice": null, "stock": 1, "description": "Loção corporal para nutrição e hidratação, ideal para deixar a pele macia e bem cuidada.", "size": "190g", "benefit": "Nutrição e hidratação", "use": "Uso corporal diário", "featured": false, "image": "assets/apiderm-cereja-avela.webp"},
+  {"id": "p09", "name": "Apiderm Rosa Mosqueta", "category": "Corpo", "price": 15, "oldPrice": null, "stock": 3, "description": "Loção corporal com rosa mosqueta para hidratação e restauração, deixando a pele macia e iluminada.", "size": "190g", "benefit": "Hidratação e restauração", "use": "Uso corporal diário", "featured": false, "image": "assets/apiderm-rosa-mosqueta.webp"},
+  {"id": "p10", "name": "Toque Special Blindagem 3 em 1", "category": "Maquiagem", "price": 20, "oldPrice": null, "stock": 1, "description": "Primer, fixador e diluidor para maquiagem. Ajuda na preparação e na durabilidade da make.", "size": "15ml", "benefit": "Primer, fixador e diluidor", "use": "Preparação e finalização da make", "featured": true, "image": "assets/toque-special-blindagem.webp"},
+  {"id": "p11", "name": "Max Love Pó Facial Translúcido Vegano", "category": "Maquiagem", "price": 17, "oldPrice": null, "stock": 1, "description": "Finaliza a maquiagem com efeito matte, toque aveludado e aparência suave com efeito soft focus.", "size": "12g", "benefit": "Matte e soft focus", "use": "Finalização da maquiagem", "featured": true, "image": "assets/maxlove-po-translucido.webp"},
+  {"id": "p12", "name": "Max Love Sérum Facial Peeling AHA 5% + BHA 1%", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Sérum esfoliante que auxilia na renovação da pele, na textura e na aparência dos poros.", "size": "30ml", "benefit": "Renovação e textura", "use": "Rotina facial; usar conforme o rótulo", "featured": false, "image": "assets/maxlove-peeling.webp"},
+  {"id": "p13", "name": "Bio Instinto Caneta de Velho", "category": "Autocuidado", "price": 12, "oldPrice": null, "stock": 2, "description": "Pomada cosmética massageadora com sensação refrescante, indicada para massagens corporais e conforto.", "size": "150g", "benefit": "Sensação refrescante", "use": "Massagem corporal", "featured": false, "image": "assets/bioinstinto-caneta-velho.webp"},
+  {"id": "p14", "name": "Max Love Sérum Uniformizador Retinol + Q-10", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Ajuda a deixar a pele com aparência mais uniforme, hidratada e luminosa na rotina de cuidados.", "size": "30ml", "benefit": "Uniformização e luminosidade", "use": "Rotina facial", "featured": false, "image": "assets/maxlove-uniformizador.webp"},
+  {"id": "p15", "name": "Max Love Sérum Bioativo Antiacne 10 em 1", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Indicado para peles oleosas e acneicas, auxiliando no controle da oleosidade e na aparência da textura.", "size": "30ml", "benefit": "Controle da oleosidade", "use": "Peles oleosas e acneicas", "featured": false, "image": "assets/maxlove-antiacne.webp"},
+  {"id": "p16", "name": "Max Love Sérum Facial Colágeno", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Sérum facial que auxilia na hidratação e deixa a pele com aparência macia e saudável.", "size": "30ml", "benefit": "Hidratação", "use": "Rotina facial", "featured": false, "image": "assets/maxlove-colageno.webp"},
+  {"id": "p17", "name": "Max Love Sérum Suavizador de Olheiras", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Cuidado para a região dos olhos que ajuda a deixar o olhar com aparência mais descansada e iluminada.", "size": "30ml", "benefit": "Cuidado para a área dos olhos", "use": "Região dos olhos", "featured": false, "image": "assets/maxlove-olheiras.webp"},
+  {"id": "p18", "name": "Max Love Princesa das Bases - Alta Cobertura Matte", "category": "Maquiagem", "price": 20, "oldPrice": null, "stock": 5, "description": "Base líquida de alta cobertura e acabamento matte para ajudar a uniformizar o tom da pele.", "size": "30ml", "benefit": "Alta cobertura matte", "use": "Maquiagem", "tones": "Consulte os tons disponíveis", "featured": true, "image": "assets/maxlove-princesa-bases.webp"},
+  {"id": "p19", "name": "Max Love Base Líquida Matte FPS 35 / FPUVA 13", "category": "Maquiagem", "price": 25, "oldPrice": null, "stock": 2, "description": "Base de alta cobertura com acabamento matte e proteção FPS 35 e FPUVA 13 para uso diário.", "size": "30ml", "benefit": "Alta cobertura + FPS 35", "use": "Maquiagem diária", "tones": "Consulte os tons disponíveis", "featured": true, "image": "assets/maxlove-base-fps35.webp"},
+  {"id": "p20", "name": "Soul Skin Mousse Micelar Anti Oleosidade", "category": "Skincare", "price": 20, "oldPrice": null, "stock": 2, "description": "Mousse de limpeza facial que remove impurezas e auxilia no controle da oleosidade, deixando sensação de frescor.", "size": "150ml", "benefit": "Limpeza e controle da oleosidade", "use": "Peles mistas e oleosas", "featured": false, "image": "assets/soul-mousse-micelar.webp"},
+  {"id": "p21", "name": "Lapop Honey Skin Óleo Facial", "category": "Skincare", "price": 15, "oldPrice": null, "stock": 1, "description": "Óleo facial nutritivo e hidratante para complementar a rotina de cuidados e deixar a pele com toque macio.", "size": "30ml", "benefit": "Nutrição e hidratação", "use": "Rotina facial", "featured": false, "image": "assets/lapop-honey-skin.webp"}
 ];
-let products=JSON.parse(localStorage.getItem(LS.products)||'null')||defaults;
-let theme=JSON.parse(localStorage.getItem(LS.theme)||'null')||defaultTheme;
-let store=JSON.parse(localStorage.getItem(LS.store)||'null')||defaultStore;
+let products=defaults.map(p=>({...p}));
+let theme={...defaultTheme};
+let store={...defaultStore};
 let cart=JSON.parse(localStorage.getItem(LS.cart)||'[]');
 let savedCategories=JSON.parse(localStorage.getItem(LS.categories)||'null')||[];
 let activeCategory='Todos';
@@ -394,10 +394,25 @@ function renderCategorySuggestions(){
 } 
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
 function applyTheme(){document.documentElement.style.setProperty('--primary',theme.primary);document.documentElement.style.setProperty('--secondary',theme.secondary);document.documentElement.style.setProperty('--bg',theme.background);document.documentElement.style.setProperty('--text',theme.text);const h=$('.hero h1');h.innerHTML=theme.heroTitle.replace(/(você\.?)/i,'<em>$1</em>');$('.hero-copy>p').textContent=theme.heroSubtitle;}
-function applyStore(){const phone=store.phone.replace(/\D/g,'');document.querySelectorAll('a[href*="wa.me"]').forEach(a=>a.href=a.href.replace(/wa\.me\/\d+/,`wa.me/${phone}`));const about=$$('.stats div');if(about[0]){about[0].querySelector('strong').textContent=store.location.replace(' • SP','')||'Barueri';about[0].querySelector('span').textContent=store.location.includes('SP')?'São Paulo':store.location;}if(about[1])about[1].querySelector('span').textContent=formatPhone(phone);const foot=$('footer p');if(foot)foot.textContent=`${store.location}   |   ${formatPhone(phone)}`;const contact=$('#contato .btn');if(contact){contact.textContent=`WhatsApp: ${formatPhone(phone)}`;contact.href=waLink('Olá! Quero fazer um pedido na Gonvé Cosmetics.');}}
+function applyStore(){const phone=store.phone.replace(/\D/g,'');document.querySelectorAll('a[href*="wa.me"]').forEach(a=>a.href=a.href.replace(/wa\.me\/\d+/,`wa.me/${phone}`));const about=$$('.stats div');if(about[0]){about[0].querySelector('strong').textContent=store.location.replace(' • SP','')||'Barueri';about[0].querySelector('span').textContent=store.location.includes('SP')?'São Paulo':store.location;}if(about[1])about[1].querySelector('span').textContent=formatPhone(phone);const foot=$('footer p');if(foot)foot.textContent=`${store.location}   |   ${formatPhone(phone)}`;const contact=$('#contato .btn');if(contact){contact.textContent=`WhatsApp: ${formatPhone(phone)}`;contact.href=waLink('Olá! Quero fazer um pedido na Gonvé Cosmetics.');}renderServiceInfo();}
 function formatPhone(phone){const d=phone.replace(/\D/g,'').replace(/^55/,'');return d.length===11?`(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`:phone;}
-function card(p){return `<article class="product-card"><div class="product-img"><img src="${p.image||placeholder(p.name)}" alt="${p.name}">${p.featured?'<span class="badge">DESTAQUE</span>':''}</div><div class="product-info"><span class="product-category">${p.category}</span><h3>${p.name}</h3><p>${p.description}</p><div class="price-line"><strong>${money(p.price)}</strong>${p.oldPrice?`<span class="old-price">${money(p.oldPrice)}</span>`:''}</div><div class="buy-row"><button class="btn primary" onclick="addToCart('${p.id}')">Adicionar</button><a class="btn secondary" target="_blank" rel="noreferrer" href="${waLink(`Olá! Quero saber mais sobre ${p.name} (${money(p.price)}).`)}">WhatsApp</a></div></div></article>`}
-function render(){
+function card(p){const meta=[p.benefit,p.size,p.use].filter(Boolean);return `<article class="product-card"><div class="product-img"><img src="${p.image||placeholder(p.name)}" alt="${p.name}">${p.featured?'<span class="badge">DESTAQUE</span>':''}</div><div class="product-info"><span class="product-category">${p.category}</span><h3>${p.name}</h3><p>${p.description}</p>${meta.length?`<div class="product-meta">${meta.map(x=>`<span>${x}</span>`).join('')}</div>`:''}${p.tones?`<p class="product-tones">Tons: ${p.tones}</p>`:''}<div class="price-line"><strong>${money(p.price)}</strong>${p.oldPrice?`<span class="old-price">${money(p.oldPrice)}</span>`:''}</div><div class="buy-row"><button class="btn primary" onclick="addToCart('${p.id}')">Adicionar</button><a class="btn secondary" target="_blank" rel="noreferrer" href="${waLink(`Olá! Quero saber mais sobre ${p.name} (${money(p.price)}).`)}">WhatsApp</a></div></div></article>`}
+function renderHero(){
+  const picks=products.filter(p=>p.featured&&p.stock>0).slice(0,3);
+  const list=picks.length>=3?picks:products.filter(p=>p.stock>0).slice(0,3);
+  const el=$('#heroProducts'); if(!el)return;
+  el.innerHTML=list.map(p=>`<article class="hero-product"><img src="${p.image||placeholder(p.name)}" alt="${p.name}"><div class="hero-product-copy"><small>${p.category}</small><strong>${p.name}</strong><div class="hero-price">${money(p.price)}</div><button class="btn primary" onclick="addToCart('${p.id}')">Comprar</button></div></article>`).join('');
+}
+function renderServiceInfo(){
+  if($('#deliveryAreasText'))$('#deliveryAreasText').textContent=store.deliveryAreas||'Entrega';
+  if($('#deliveryDeadlineText'))$('#deliveryDeadlineText').textContent=store.deliveryDeadline||'';
+  if($('#pickupInfoText'))$('#pickupInfoText').textContent=store.pickupInfo||'';
+  if($('#hoursText'))$('#hoursText').textContent=store.hours||'';
+  const reviews=Array.isArray(store.reviews)?store.reviews:[];
+  const sec=$('#avaliacoes');
+  if(sec){sec.classList.toggle('hidden',!reviews.length);$('#reviewsGrid').innerHTML=reviews.map(r=>`<article class="review-card"><p>“${r.text}”</p><strong>${r.name}</strong></article>`).join('');}
+}
+function render(){renderHero();renderServiceInfo();
   const featured=products.filter(p=>p.featured).slice(0,8); $('#featuredGrid').innerHTML=(featured.length?featured:products.slice(0,4)).map(card).join('');
   const q=$('#searchInput').value.trim().toLowerCase(); const list=products.filter(p=>(activeCategory==='Todos'||p.category===activeCategory)&&(`${p.name} ${p.description} ${p.category}`.toLowerCase().includes(q)));
   $('#productsGrid').innerHTML=list.map(card).join(''); $('#emptyState').classList.toggle('hidden',list.length>0);
@@ -410,6 +425,13 @@ window.addToCart=id=>{const p=products.find(x=>x.id===id);if(!p)return;const ite
 window.cartQty=(id,d)=>{const it=cart.find(x=>x.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(x=>x.id!==id);save();renderCart()};
 function getCartSubtotal(){return cart.reduce((sum,i)=>{const p=products.find(x=>x.id===i.id);return p?sum+(Number(p.price)||0)*i.qty:sum},0)}
 function getPayment(){return document.querySelector('input[name="payment"]:checked')?.value||''}
+function getFulfillment(){return document.querySelector('input[name="fulfillment"]:checked')?.value||'Entrega'}
+function updateFulfillment(){
+  const mode=getFulfillment();
+  $('#addressWrap')?.classList.toggle('hidden',mode==='Retirada');
+  $('.fulfillment-card').forEach(c=>c.classList.toggle('selected',c.querySelector('input')?.checked));
+}
+$('input[name="fulfillment"]').forEach(i=>i.addEventListener('change',updateFulfillment));
 function getCheckoutTotals(){const subtotal=getCartSubtotal();const pix=getPayment()==='PIX';const discount=pix?subtotal*.05:0;return {subtotal,discount,total:subtotal-discount}}
 function updateCheckoutSummary(){const {subtotal,discount,total}=getCheckoutTotals();$('#checkoutSubtotal').textContent=money(subtotal);$('#checkoutDiscount').textContent=`- ${money(discount)}`;$('#cartTotal').textContent=money(total);$('#checkoutDiscountRow').classList.toggle('inactive',discount<=0);}
 function renderCart(){let count=0;$('#cartItems').innerHTML=cart.map(i=>{const p=products.find(x=>x.id===i.id);if(!p)return '';count+=i.qty;return `<div class="cart-item"><img src="${p.image||placeholder(p.name)}" alt="${p.name}"><div><h4>${p.name}</h4><small>${money(p.price)} cada</small><div class="qty"><button type="button" aria-label="Diminuir quantidade" onclick="cartQty('${p.id}',-1)">−</button><b>${i.qty}</b><button type="button" aria-label="Aumentar quantidade" onclick="cartQty('${p.id}',1)">+</button></div></div><strong>${money(p.price*i.qty)}</strong></div>`}).join('')||'<div class="empty">Seu carrinho está vazio.</div>';$('#cartCount').textContent=count;updateCheckoutSummary();}
@@ -424,16 +446,17 @@ $('#checkoutBtn').onclick=()=>{
   const name=$('#checkoutName').value.trim();
   const phone=$('#checkoutPhone').value.trim();
   const phoneDigits=phone.replace(/\D/g,'');
+  const fulfillment=getFulfillment();
   const address=$('#checkoutAddress').value.trim();
   const payment=getPayment();
   if(name.split(/\s+/).length<2)return toast('Informe seu nome completo');
   if(phoneDigits.length<10)return toast('Informe um telefone válido');
-  if(address.length<8)return toast('Informe seu endereço completo');
+  if(fulfillment==='Entrega'&&address.length<8)return toast('Informe seu endereço completo');
   if(!payment)return toast('Escolha a forma de pagamento');
   const {subtotal,discount,total}=getCheckoutTotals();
   const lines=cart.map(i=>{const p=products.find(x=>x.id===i.id);return p?`• ${p.name} | Qtd: ${i.qty} | ${money(p.price*i.qty)}`:''}).filter(Boolean);
   const discountLine=payment==='PIX'?`\nDesconto PIX (5%): -${money(discount)}`:'';
-  const text=`Olá! Quero formalizar este pedido na ${store.name}.\n\n*DADOS DO CLIENTE*\nNome: ${name}\nTelefone: ${phone}\nEndereço: ${address}\n\n*ITENS DO PEDIDO*\n${lines.join('\n')}\n\n*RESUMO*\nSubtotal: ${money(subtotal)}${discountLine}\nTotal: ${money(total)}\nForma de pagamento: ${payment}\n\nPor favor, confirme a disponibilidade dos produtos e as informações de entrega/retirada.`;
+  const text=`Olá! Quero formalizar este pedido na ${store.name}.\n\n*DADOS DO CLIENTE*\nNome: ${name}\nTelefone: ${phone}\nForma de recebimento: ${fulfillment}\n${fulfillment==='Entrega'?`Endereço: ${address}`:'Retirada: combinar local e horário pelo WhatsApp'}\n\n*ITENS DO PEDIDO*\n${lines.join('\n')}\n\n*RESUMO*\nSubtotal: ${money(subtotal)}${discountLine}\nTotal: ${money(total)}\nForma de pagamento: ${payment}\n\nPor favor, confirme a disponibilidade dos produtos e as informações de entrega/retirada.`;
   window.open(waLink(text),'_blank');
 };
 $('#searchInput').addEventListener('input',render);$('#searchToggle').onclick=()=>{location.hash='produtos';setTimeout(()=>$('#searchInput').focus(),250)};$('#year').textContent=new Date().getFullYear();
@@ -441,17 +464,21 @@ function openAdmin(){$('#adminPanel').classList.add('open');$('#adminPanel').set
 function closeAdmin(){$('#adminPanel').classList.remove('open');$('#productModal').classList.remove('open')}
 $('#adminOpen').onclick=openAdmin;$$('[data-close="admin"]').forEach(b=>b.onclick=closeAdmin);
 document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='g')openAdmin();if(e.key==='Escape'){closeCart();closeAdmin();$('#productModal').classList.remove('open')}});
-$('#adminLoginBtn').onclick=()=>{const pass=localStorage.getItem(LS.pass)||'gonve2026';if($('#adminPassword').value===pass){sessionStorage.setItem('gonve_admin_ok','1');$('#adminLogin').classList.add('hidden');$('#adminShell').classList.remove('hidden');fillAdminFields();toast('Bem-vinda ao painel Gonvé')}else toast('Senha incorreta')};
+$('#adminLoginBtn').onclick=async()=>{const pass=$('#adminPassword').value;const ok=await verifyAdminPassword(pass);if(ok){adminPasswordSession=pass;sessionStorage.setItem('gonve_admin_ok','1');$('#adminLogin').classList.add('hidden');$('#adminShell').classList.remove('hidden');fillAdminFields();toast('Bem-vinda ao painel Gonvé')}else toast('Senha incorreta ou catálogo central não configurado')};
 $('#adminLogout').onclick=()=>{sessionStorage.removeItem('gonve_admin_ok');$('#adminShell').classList.add('hidden');$('#adminLogin').classList.remove('hidden');$('#adminPassword').value=''};
 $$('.admin-tab[data-tab]').forEach(b=>b.onclick=()=>{$$('.admin-tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');$$('.admin-page').forEach(x=>x.classList.remove('active'));$(`#tab-${b.dataset.tab}`).classList.add('active')});
 function renderAdminProducts(){const el=$('#adminProducts');if(!el)return;el.innerHTML=products.map(p=>`<div class="admin-product"><img src="${p.image||placeholder(p.name)}"><div><h4>${p.name}</h4><small>${p.category} • ${money(p.price)} ${p.featured?'• Destaque':''}</small></div><button class="mini-btn" onclick="editProduct('${p.id}')">Editar</button><button class="mini-btn danger" onclick="deleteProduct('${p.id}')">Excluir</button></div>`).join('')||'<div class="empty">Nenhum produto cadastrado.</div>'}
-function fillAdminFields(){$('#colorPrimary').value=theme.primary;$('#colorSecondary').value=theme.secondary;$('#colorBackground').value=theme.background;$('#colorText').value=theme.text;$('#heroTitle').value=theme.heroTitle;$('#heroSubtitle').value=theme.heroSubtitle;$('#storeName').value=store.name;$('#storePhone').value=store.phone;$('#storeLocation').value=store.location;$('#storeInstagram').value=store.instagram||'';renderAdminProducts()}
-$('#saveTheme').onclick=()=>{theme={...theme,primary:$('#colorPrimary').value,secondary:$('#colorSecondary').value,background:$('#colorBackground').value,text:$('#colorText').value,heroTitle:$('#heroTitle').value,heroSubtitle:$('#heroSubtitle').value};save();applyTheme();toast('Aparência atualizada')};
+function fillAdminFields(){$('#colorPrimary').value=theme.primary;$('#colorSecondary').value=theme.secondary;$('#colorBackground').value=theme.background;$('#colorText').value=theme.text;$('#heroTitle').value=theme.heroTitle;$('#heroSubtitle').value=theme.heroSubtitle;$('#storeName').value=store.name;$('#storePhone').value=store.phone;$('#storeLocation').value=store.location;$('#storeInstagram').value=store.instagram||'';$('#storeDeliveryAreas').value=store.deliveryAreas||'';$('#storeDeliveryDeadline').value=store.deliveryDeadline||'';$('#storePickupInfo').value=store.pickupInfo||'';$('#storeHours').value=store.hours||'';$('#storeReviews').value=(store.reviews||[]).map(r=>`${r.name}|${r.text}`).join('\n');renderAdminProducts()}
+$('#saveTheme').onclick=async()=>{theme={...theme,primary:$('#colorPrimary').value,secondary:$('#colorSecondary').value,background:$('#colorBackground').value,text:$('#colorText').value,heroTitle:$('#heroTitle').value,heroSubtitle:$('#heroSubtitle').value};save();applyTheme();await persistCentral();toast('Aparência atualizada para todas as clientes')};
 $('#resetTheme').onclick=()=>{theme={...defaultTheme};save();applyTheme();fillAdminFields();toast('Cores restauradas')};
-$('#saveStore').onclick=()=>{store={name:$('#storeName').value.trim()||defaultStore.name,phone:$('#storePhone').value.trim()||defaultStore.phone,location:$('#storeLocation').value.trim()||defaultStore.location,instagram:$('#storeInstagram').value.trim()};save();applyStore();toast('Dados da loja salvos')};
-function openProductModal(p=null){renderCategorySuggestions();$('#productModal').classList.add('open');$('#productModalTitle').textContent=p?'Editar produto':'Novo produto';$('#productId').value=p?.id||'';$('#productName').value=p?.name||'';$('#productCategory').value=p?.category||'';$('#productPrice').value=p?.price??'';$('#productOldPrice').value=p?.oldPrice??'';$('#productStock').value=p?.stock??1;$('#productImage').value=(p?.image?.startsWith('data:')?'':p?.image)||'';$('#productDescription').value=p?.description||'';$('#productFeatured').checked=!!p?.featured;$('#productImageFile').value='';}
+$('#saveStore').onclick=async()=>{
+  const reviews=$('#storeReviews').value.split('\n').map(x=>x.trim()).filter(Boolean).map(line=>{const parts=line.split('|');return {name:(parts.shift()||'Cliente').trim(),text:parts.join('|').trim()}}).filter(r=>r.text);
+  store={...store,name:$('#storeName').value.trim()||defaultStore.name,phone:$('#storePhone').value.trim()||defaultStore.phone,location:$('#storeLocation').value.trim()||defaultStore.location,instagram:$('#storeInstagram').value.trim(),deliveryAreas:$('#storeDeliveryAreas').value.trim(),deliveryDeadline:$('#storeDeliveryDeadline').value.trim(),pickupInfo:$('#storePickupInfo').value.trim(),hours:$('#storeHours').value.trim(),reviews};
+  save();applyStore();await persistCentral();toast('Dados da loja salvos para todas as clientes')
+};
+function openProductModal(p=null){renderCategorySuggestions();$('#productModal').classList.add('open');$('#productModalTitle').textContent=p?'Editar produto':'Novo produto';$('#productId').value=p?.id||'';$('#productName').value=p?.name||'';$('#productCategory').value=p?.category||'';$('#productPrice').value=p?.price??'';$('#productOldPrice').value=p?.oldPrice??'';$('#productStock').value=p?.stock??1;$('#productSize').value=p?.size||'';$('#productBenefit').value=p?.benefit||'';$('#productUse').value=p?.use||'';$('#productTones').value=p?.tones||'';$('#productImage').value=(p?.image?.startsWith('data:')?'':p?.image)||'';$('#productDescription').value=p?.description||'';$('#productFeatured').checked=!!p?.featured;$('#productImageFile').value='';}
 $('#newProductBtn').onclick=()=>openProductModal();$$('[data-close="productModal"]').forEach(b=>b.onclick=()=>$('#productModal').classList.remove('open'));
-window.editProduct=id=>openProductModal(products.find(p=>p.id===id));window.deleteProduct=id=>{if(confirm('Excluir este produto?')){products=products.filter(p=>p.id!==id);cart=cart.filter(i=>i.id!==id);save();render();toast('Produto excluído')}};
+window.editProduct=id=>openProductModal(products.find(p=>p.id===id));window.deleteProduct=async id=>{if(confirm('Excluir este produto?')){products=products.filter(p=>p.id!==id);cart=cart.filter(i=>i.id!==id);save();render();await persistCentral();toast('Produto excluído para todas as clientes')}};
 function fileToDataURL(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file)})}
 async function optimizeDataUrl(source){
   if(!source || !source.startsWith('data:image/')) return source;
@@ -479,7 +506,7 @@ $('#productForm').onsubmit=async e=>{
   let image=$('#productImage').value.trim()||old?.image||placeholder($('#productName').value);
   const file=$('#productImageFile').files[0];
   try{if(file)image=await optimizeImage(file)}catch(err){console.error(err);return toast('Não foi possível processar a imagem selecionada');}
-  const p={id,name:$('#productName').value.trim(),category,price:Number($('#productPrice').value),oldPrice:$('#productOldPrice').value?Number($('#productOldPrice').value):null,stock:Number($('#productStock').value||0),image,description:$('#productDescription').value.trim(),featured:$('#productFeatured').checked};
+  const p={id,name:$('#productName').value.trim(),category,price:Number($('#productPrice').value),oldPrice:$('#productOldPrice').value?Number($('#productOldPrice').value):null,stock:Number($('#productStock').value||0),size:$('#productSize').value.trim(),benefit:$('#productBenefit').value.trim(),use:$('#productUse').value.trim(),tones:$('#productTones').value.trim(),image,description:$('#productDescription').value.trim(),featured:$('#productFeatured').checked};
   const snapshot=old?{...old}:null;
   if(old)Object.assign(old,p);else products.unshift(p);
   if(category&&!savedCategories.some(c=>c.toLocaleLowerCase('pt-BR')===category.toLocaleLowerCase('pt-BR')))savedCategories.push(category);
@@ -493,12 +520,44 @@ $('#productForm').onsubmit=async e=>{
     return toast('Produto não foi salvo: armazenamento cheio. Use uma imagem menor.');
   }
   $('#productModal').classList.remove('open');
-  toast(old?'Produto atualizado e exibido na loja':'Produto cadastrado e exibido na loja');
+  await persistCentral();
+  toast(old?'Produto atualizado para todas as clientes':'Produto cadastrado para todas as clientes');
 };
 $('#exportData').onclick=()=>{const blob=new Blob([JSON.stringify({products,theme,store},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='gonve-backup.json';a.click();URL.revokeObjectURL(a.href)};
 $('#importData').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{const data=JSON.parse(r.result);if(data.products){products=data.products;for(const p of products){if(p.image?.startsWith('data:image/')&&!p.image.startsWith('data:image/svg+xml')){try{p.image=await optimizeDataUrl(p.image)}catch(err){console.warn('Imagem do backup não pôde ser otimizada',err)}}}}if(data.theme)theme=data.theme;if(data.store)store=data.store;savedCategories=uniqueCategories();const ok=save(false);applyTheme();render();fillAdminFields();toast(ok?'Backup importado e imagens otimizadas':'Backup carregado, mas o navegador ficou sem espaço')}catch(err){console.error(err);toast('Arquivo de backup inválido')}};r.readAsText(f)};
-$('#changePassword').onclick=()=>{const p=$('#newAdminPassword').value;if(p.length<6)return toast('Use uma senha com pelo menos 6 caracteres');localStorage.setItem(LS.pass,p);$('#newAdminPassword').value='';toast('Senha alterada')};
-savedCategories=uniqueCategories();applyTheme();applyStore();render();save(false);
+$('#changePassword').onclick=()=>toast('A senha central é alterada em Vercel > Environment Variables > ADMIN_PASSWORD');
+let adminPasswordSession='';
+async function loadCentralCatalog(){
+  try{
+    const r=await fetch('/api/catalog',{cache:'no-store'});
+    if(!r.ok)throw new Error('central unavailable');
+    const data=await r.json();
+    if(Array.isArray(data.products)&&data.products.length)products=data.products;
+    if(data.theme)theme={...defaultTheme,...data.theme};
+    if(data.store)store={...defaultStore,...data.store};
+    savedCategories=uniqueCategories();
+    applyTheme();applyStore();render();
+    const st=$('#adminSyncStatus');if(st)st.textContent='Catálogo central: conectado';
+  }catch(err){
+    console.warn('Catálogo central indisponível; usando catálogo incorporado.',err);
+    const st=$('#adminSyncStatus');if(st)st.textContent='Catálogo central: configure o Vercel Blob';
+  }
+}
+async function persistCentral(){
+  if(!adminPasswordSession){const st=$('#adminSyncStatus');if(st)st.textContent='Catálogo central: faça login no painel';return false;}
+  try{
+    const r=await fetch('/api/catalog',{method:'PUT',headers:{'content-type':'application/json','x-admin-password':adminPasswordSession},body:JSON.stringify({products,theme,store})});
+    if(!r.ok)throw new Error(await r.text());
+    const st=$('#adminSyncStatus');if(st)st.textContent='Catálogo central: sincronizado';
+    return true;
+  }catch(err){
+    console.error(err);const st=$('#adminSyncStatus');if(st)st.textContent='Catálogo central: erro ao sincronizar';toast('Não foi possível sincronizar o catálogo central');return false;
+  }
+}
+async function verifyAdminPassword(pass){
+  try{const r=await fetch('/api/catalog',{method:'POST',headers:{'content-type':'application/json','x-admin-password':pass},body:JSON.stringify({action:'verify'})});return r.ok}catch{return false}
+}
+savedCategories=uniqueCategories();applyTheme();applyStore();render();save(false);updateFulfillment();loadCentralCatalog();
 
 // Garante que a loja pública seja a tela inicial.
 const __adminInitial = document.getElementById('adminPanel');
