@@ -328,6 +328,7 @@ a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{c
             </div>
             <label>Avaliações reais<textarea id="storeReviews" rows="6" placeholder="Uma por linha: Nome|Comentário"></textarea><small class="field-hint">Use apenas avaliações reais de clientes.</small></label>
             <button class="btn primary" id="saveStore">Salvar dados</button>
+            <button class="btn secondary" id="syncCatalogNow" type="button">Sincronizar catálogo atual para todas as clientes</button>
             <div class="admin-sync-status" id="adminSyncStatus">Catálogo central: verificando…</div>
           </div>
         </section>
@@ -536,6 +537,7 @@ function renderAdminProducts(){const el=$('#adminProducts');if(!el)return;el.inn
 function fillAdminFields(){$('#colorPrimary').value=theme.primary;$('#colorSecondary').value=theme.secondary;$('#colorBackground').value=theme.background;$('#colorText').value=theme.text;$('#heroTitle').value=theme.heroTitle;$('#heroSubtitle').value=theme.heroSubtitle;$('#storeName').value=store.name;$('#storePhone').value=store.phone;$('#storeLocation').value=store.location;$('#storeInstagram').value=store.instagram||'';$('#storeDeliveryAreas').value=store.deliveryAreas||'';$('#storeDeliveryDeadline').value=store.deliveryDeadline||'';$('#storePickupInfo').value=store.pickupInfo||'';$('#storeHours').value=store.hours||'';$('#storeReviews').value=(store.reviews||[]).map(r=>`${r.name}|${r.text}`).join('\n');renderAdminProducts()}
 $('#saveTheme').onclick=async()=>{theme={...theme,primary:$('#colorPrimary').value,secondary:$('#colorSecondary').value,background:$('#colorBackground').value,text:$('#colorText').value,heroTitle:$('#heroTitle').value,heroSubtitle:$('#heroSubtitle').value};save();applyTheme();await persistCentral();toast('Aparência atualizada para todas as clientes')};
 $('#resetTheme').onclick=()=>{theme={...defaultTheme};save();applyTheme();fillAdminFields();toast('Cores restauradas')};
+$('#syncCatalogNow')?.addEventListener('click',async()=>{const ok=await persistCentral();if(ok)toast('Catálogo sincronizado para todas as clientes')});
 $('#saveStore').onclick=async()=>{
   const reviews=$('#storeReviews').value.split('\n').map(x=>x.trim()).filter(Boolean).map(line=>{const parts=line.split('|');return {name:(parts.shift()||'Cliente').trim(),text:parts.join('|').trim()}}).filter(r=>r.text);
   store={...store,name:$('#storeName').value.trim()||defaultStore.name,phone:$('#storePhone').value.trim()||defaultStore.phone,location:$('#storeLocation').value.trim()||defaultStore.location,instagram:$('#storeInstagram').value.trim(),deliveryAreas:$('#storeDeliveryAreas').value.trim(),deliveryDeadline:$('#storeDeliveryDeadline').value.trim(),pickupInfo:$('#storePickupInfo').value.trim(),hours:$('#storeHours').value.trim(),reviews};
