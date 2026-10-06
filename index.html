@@ -56,21 +56,24 @@ a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{c
 <style>
 .gonve-chat-toggle{position:fixed;right:22px;bottom:92px;z-index:65;width:58px;height:58px;border:0;border-radius:50%;background:linear-gradient(145deg,var(--primary),#b98a4f);color:#fff;box-shadow:0 14px 38px rgba(82,55,28,.28);display:grid;place-items:center;font-size:25px}
 .gonve-chat-toggle::after{content:'';position:absolute;inset:-5px;border:1px solid color-mix(in srgb,var(--primary) 30%,transparent);border-radius:50%}.gonve-chat-toggle svg{width:31px;height:31px;overflow:visible}.gonve-chat-toggle .chat-bubble{fill:none;stroke:#fff;stroke-width:4;stroke-linejoin:round}.gonve-chat-toggle .chat-lotus{fill:#fff}
-.gonve-chat{position:fixed;right:22px;bottom:162px;z-index:66;width:min(390px,calc(100vw - 28px));height:min(610px,72vh);background:var(--surface);border:1px solid var(--border);border-radius:24px;box-shadow:0 26px 80px rgba(42,31,21,.24);display:none;overflow:hidden}
+.gonve-chat{position:fixed;right:20px;bottom:20px;z-index:66;width:min(500px,calc(100vw - 40px));height:min(760px,calc(100dvh - 40px));background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:0 20px 70px rgba(42,31,21,.22);display:none;overflow:hidden}
 .gonve-chat.open{display:flex;flex-direction:column}
-.gonve-chat-head{display:flex;align-items:center;justify-content:space-between;padding:16px 17px;background:linear-gradient(120deg,var(--primary),color-mix(in srgb,var(--primary) 78%,#2d2117));color:#fff}
-.gonve-chat-head strong,.gonve-chat-head small{display:block}.gonve-chat-head strong{font-family:'Playfair Display',serif;font-size:21px}.gonve-chat-head small{font-size:10px;opacity:.82;margin-top:2px}
-.gonve-chat-close{width:34px;height:34px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:50%;font-size:20px}
-.gonve-chat-messages{flex:1;overflow:auto;padding:15px;background:linear-gradient(180deg,#fffaf5,#fff)}
-.gonve-msg{max-width:87%;padding:11px 13px;border-radius:16px;margin:7px 0;font-size:13px;line-height:1.48;white-space:pre-line}
+.gonve-chat-head{display:flex;flex-shrink:0;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;background:linear-gradient(120deg,var(--primary),color-mix(in srgb,var(--primary) 78%,#2d2117));color:#fff}
+.gonve-chat-head strong,.gonve-chat-head small{display:block}.gonve-chat-head strong{font-family:Georgia,serif;font-size:23px;font-weight:400}.gonve-chat-head small{font-size:12px;opacity:.9;margin-top:4px}
+.gonve-chat-close{width:44px;height:44px;flex-shrink:0;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;border-radius:50%;font-size:25px}
+.gonve-chat-messages{position:relative;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#b7a087 transparent;padding:16px;background:linear-gradient(180deg,#fffaf5,#fff)}
+.gonve-msg{max-width:100%;padding:12px 14px;border-radius:14px;margin:0 0 14px;font-size:14px;line-height:1.6;white-space:pre-line;overflow-wrap:anywhere}
 .gonve-msg.bot{background:#f3ebe2;border-bottom-left-radius:5px}.gonve-msg.user{background:var(--primary);color:#fff;margin-left:auto;border-bottom-right-radius:5px}
-.gonve-chat-products{display:grid;gap:8px;margin-top:10px}
-.gonve-chat-product{display:grid;grid-template-columns:54px 1fr;gap:9px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:14px;padding:8px}
-.gonve-chat-product img{width:54px;height:54px;object-fit:cover;border-radius:11px}.gonve-chat-product strong{display:block;font-size:12px;line-height:1.25}.gonve-chat-product small{color:var(--muted);font-size:10px}.gonve-chat-product button{border:0;background:var(--primary);color:#fff;border-radius:999px;padding:6px 9px;font-size:10px;margin-top:5px}
-.gonve-chat-suggestions{display:flex;gap:6px;overflow:auto;padding:9px 12px;border-top:1px solid var(--border);background:#fff}.gonve-chat-suggestions button{white-space:nowrap;border:1px solid var(--border);background:#fff;border-radius:999px;padding:7px 10px;font-size:10px}
-.gonve-chat-form{display:flex;gap:8px;padding:11px;border-top:1px solid var(--border);background:#fff}.gonve-chat-form input{flex:1;min-width:0;border:1px solid var(--border);border-radius:999px;padding:11px 13px;outline:none}.gonve-chat-form button{border:0;background:var(--primary);color:#fff;border-radius:999px;padding:0 15px;font-weight:800}
-.gonve-chat-note{padding:0 13px 10px;color:var(--muted);background:#fff;font-size:9px;line-height:1.35}
-@media(max-width:600px){.gonve-chat-toggle{right:16px;bottom:82px}.gonve-chat{right:14px;bottom:148px;height:68vh}.wa-float{right:16px}}
+.gonve-msg.user{max-width:88%;width:fit-content}
+.gonve-chat-products{display:grid;gap:10px;margin-top:12px;white-space:normal}
+.gonve-chat-product{display:grid;grid-template-columns:70px minmax(0,1fr);gap:12px;align-items:center;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px}
+.gonve-chat-product img{width:70px;height:84px;object-fit:contain;border-radius:8px}.gonve-chat-product strong{display:block;font-size:14px;line-height:1.35;font-weight:600}.gonve-chat-product small{display:block;color:var(--muted);font-size:12px;line-height:1.5;margin-top:5px}.gonve-chat-product button{border:0;background:var(--primary);color:#fff;border-radius:999px;padding:9px 13px;min-height:38px;font-size:12px;font-weight:600;line-height:1.4;margin-top:8px}
+.gonve-chat-suggestions{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 16px}.gonve-chat-suggestions[hidden]{display:none}.gonve-chat-suggestions button{border:1px solid var(--border);background:#fff;border-radius:999px;padding:9px 12px;min-height:38px;font-size:12px;line-height:1.4;text-align:left}
+.gonve-chat-form{display:flex;flex-shrink:0;gap:8px;padding:12px 16px;border-top:1px solid var(--border);background:#fff}.gonve-chat-form input{flex:1;min-width:0;min-height:46px;border:1px solid var(--border);border-radius:24px;padding:11px 14px;outline:none;font-size:16px}.gonve-chat-form input:focus{border-color:var(--primary);box-shadow:0 0 0 2px color-mix(in srgb,var(--primary) 15%,transparent)}.gonve-chat-form button{border:0;background:var(--primary);color:#fff;border-radius:24px;min-height:46px;padding:0 18px;font-size:14px;font-weight:600}.gonve-chat-form button:disabled{opacity:.6;cursor:wait}
+.gonve-chat-note{flex-shrink:0;padding:0 16px 12px;color:var(--muted);background:#fff;font-size:11px;line-height:1.45}
+body.gonve-chat-open .gonve-chat-toggle,body.gonve-chat-open .wa-float{visibility:hidden}
+@media(max-width:600px){body.gonve-chat-open{overflow:hidden}.gonve-chat-toggle{right:16px;bottom:82px}.gonve-chat{top:var(--chat-visible-top,0px);right:0;bottom:auto;left:0;width:100%;height:var(--chat-visible-height,100dvh);border:0;border-radius:0}.gonve-chat-head{padding:calc(12px + env(safe-area-inset-top)) 16px 12px}.gonve-chat-messages{padding:14px}.gonve-chat-note{padding-bottom:max(10px,env(safe-area-inset-bottom))}.wa-float{right:16px}}
+@media(max-width:360px){.gonve-chat-product{grid-template-columns:54px minmax(0,1fr);gap:9px;padding:9px}.gonve-chat-product img{width:54px;height:74px}.gonve-msg{padding:11px}.gonve-chat-form{padding-inline:12px}.gonve-chat-form button{padding-inline:13px}}
 </style>
 
 <style id="gonve-compact-cards">
@@ -259,26 +262,27 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
   </footer>
 
 
-  <button class="gonve-chat-toggle" id="gonveChatToggle" aria-label="Abrir assistente de produtos" title="Posso te ajudar a escolher">
+  <button class="gonve-chat-toggle" id="gonveChatToggle" aria-label="Abrir assistente de produtos" aria-controls="gonveChat" aria-expanded="false" title="Posso te ajudar a escolher">
   <svg viewBox="0 0 64 64" aria-hidden="true">
     <path class="chat-bubble" d="M12 10h40a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8H30L18 59v-9h-6a8 8 0 0 1-8-8V18a8 8 0 0 1 8-8Z"/>
     <path class="chat-lotus" d="M32 19c-4 5-5 10 0 15 5-5 4-10 0-15Zm-3 14c-5-6-10-6-13-5 2 7 7 10 13 9-4-2-7-5-9-8 4 1 7 2 9 4Zm6 0c5-6 10-6 13-5-2 7-7 10-13 9 4-2 7-5 9-8-4 1-7 2-9 4Zm-3 5c-5 0-10-1-14-4 3 6 7 9 14 10 7-1 11-4 14-10-4 3-9 4-14 4Z"/>
   </svg>
 </button>
-  <section class="gonve-chat" id="gonveChat" aria-hidden="true">
+  <section class="gonve-chat" id="gonveChat" role="dialog" aria-labelledby="gonveChatTitle" aria-hidden="true">
     <div class="gonve-chat-head">
-      <div><strong>Assistente Gonvé</strong><small>Te ajudo a encontrar o produto ideal</small></div>
-      <button class="gonve-chat-close" id="gonveChatClose" aria-label="Fechar">×</button>
+      <div><strong id="gonveChatTitle">Assistente Gonvé</strong><small>Te ajudo a encontrar o produto ideal</small></div>
+      <button class="gonve-chat-close" id="gonveChatClose" aria-label="Fechar assistente">×</button>
     </div>
-    <div class="gonve-chat-messages" id="gonveChatMessages"></div>
-    <div class="gonve-chat-suggestions">
+    <div class="gonve-chat-messages" id="gonveChatMessages" role="log" aria-label="Conversa com a assistente" aria-live="polite" aria-relevant="additions" tabindex="0">
+    <div class="gonve-chat-suggestions" id="gonveChatSuggestions">
       <button type="button" data-chat-suggestion="Minha pele está seca">Pele seca</button>
       <button type="button" data-chat-suggestion="Minha pele está muito oleosa e com espinhas">Oleosidade e espinhas</button>
       <button type="button" data-chat-suggestion="Quero algo para olheiras">Olheiras</button>
       <button type="button" data-chat-suggestion="Quero preparar a pele para maquiagem">Preparar a make</button>
     </div>
+    </div>
     <form class="gonve-chat-form" id="gonveChatForm">
-      <input id="gonveChatInput" autocomplete="off" placeholder="Ex.: minha pele está seca..." />
+      <input id="gonveChatInput" aria-label="Sua mensagem" autocomplete="off" enterkeyhint="send" placeholder="Ex.: minha pele está seca..." />
       <button type="submit">Enviar</button>
     </form>
     <div class="gonve-chat-note">Sugestões de cosméticos com base no catálogo da Gonvé. Em caso de irritação persistente ou problema de pele importante, procure um dermatologista.</div>
@@ -747,7 +751,8 @@ function addChatMessage(text,who='bot',productsList=[]){
   const box=$('#gonveChatMessages');if(!box)return;
   const row=document.createElement('div');row.className='gonve-msg '+who;row.textContent=text;box.appendChild(row);
   if(productsList.length){const wrap=document.createElement('div');wrap.innerHTML=chatProductCards(productsList);row.appendChild(wrap.firstElementChild);}
-  box.scrollTop=box.scrollHeight;
+  if(who==='user')box.scrollTop=box.scrollHeight;
+  return row;
 }
 function describeLastProductUse(q){
   if(!chatState.lastProducts.length)return false;
@@ -780,21 +785,70 @@ function chatbotReply(message){
   else intro=picks.length?'Entendi 😊 Li o catálogo disponível e separei as opções que mais combinam com o que você pediu:':'Ainda não consegui identificar exatamente o que você procura. Me conta: é para rosto, corpo, mãos ou maquiagem?';
   if(budget!==null&&picks.length) intro+=' E mantive a busca dentro de aproximadamente '+money(budget)+'.';
   addChatMessage(intro,'bot',picks);
-  if(picks.length){
-    const reasons=picks.map(p=>p.name+': '+(p.benefit||p.description)).join('\n• ');
-    addChatMessage('Por quê eu escolhi:\n• '+reasons,'bot');
-  }
+}
+let gonveChatPending=false;
+function updateChatViewport(){
+  const panel=$('#gonveChat');if(!panel?.classList.contains('open'))return;
+  const viewport=window.visualViewport;
+  panel.style.setProperty('--chat-visible-height',Math.round(viewport?.height||window.innerHeight)+'px');
+  panel.style.setProperty('--chat-visible-top',Math.round(viewport?.offsetTop||0)+'px');
+  panel.setAttribute('aria-modal',String(window.matchMedia('(max-width:600px)').matches));
+}
+function submitGonveChat(message){
+  const value=message.trim();if(!value||gonveChatPending)return;
+  const box=$('#gonveChatMessages');
+  gonveChatPending=true;
+  $('#gonveChatSuggestions').hidden=true;
+  $('#gonveChatForm button').disabled=true;
+  box.setAttribute('aria-busy','true');
+  const question=addChatMessage(value,'user');
+  $('#gonveChatInput').value='';
+  setTimeout(()=>{
+    try{
+      chatbotReply(value);
+      // Preserve the beginning of the answer instead of skipping its product cards.
+      const answer=question.nextElementSibling;
+      if(answer)box.scrollTop=Math.max(0,answer.offsetTop-16);
+    }finally{
+      gonveChatPending=false;
+      $('#gonveChatForm button').disabled=false;
+      box.setAttribute('aria-busy','false');
+    }
+  },180);
 }
 function openGonveChat(){
   $('#gonveChat').classList.add('open');$('#gonveChat').setAttribute('aria-hidden','false');
-  if(!$('#gonveChatMessages').children.length)addChatMessage('Oi! Eu sou a assistente da Gonvé 💛 Me conta do seu jeito o que você procura. Pode falar, por exemplo: “minha pele está seca, o que você me indica?”');
-  setTimeout(()=>$('#gonveChatInput')?.focus(),100);
+  document.body.classList.add('gonve-chat-open');
+  $('#gonveChatToggle').setAttribute('aria-expanded','true');
+  if(!$('#gonveChatMessages .gonve-msg')){
+    const welcome=addChatMessage('Oi! Eu sou a assistente da Gonvé 💛 Me conta do seu jeito o que você procura. Pode falar, por exemplo: “minha pele está seca, o que você me indica?”');
+    $('#gonveChatMessages').insertBefore(welcome,$('#gonveChatSuggestions'));
+  }
+  updateChatViewport();
+  const focusTarget=window.matchMedia('(max-width:600px)').matches?'#gonveChatClose':'#gonveChatInput';
+  $(focusTarget).focus({preventScroll:true});
 }
-function closeGonveChat(){$('#gonveChat').classList.remove('open');$('#gonveChat').setAttribute('aria-hidden','true')}
+function closeGonveChat(){
+  $('#gonveChat').classList.remove('open');$('#gonveChat').setAttribute('aria-hidden','true');
+  document.body.classList.remove('gonve-chat-open');
+  $('#gonveChatToggle').setAttribute('aria-expanded','false');
+  $('#gonveChatToggle').focus({preventScroll:true});
+}
 $('#gonveChatToggle')?.addEventListener('click',openGonveChat);
 $('#gonveChatClose')?.addEventListener('click',closeGonveChat);
-$('#gonveChatForm')?.addEventListener('submit',e=>{e.preventDefault();const input=$('#gonveChatInput');const v=input.value.trim();if(!v)return;addChatMessage(v,'user');input.value='';setTimeout(()=>chatbotReply(v),180)});
-$$('[data-chat-suggestion]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.chatSuggestion;addChatMessage(v,'user');setTimeout(()=>chatbotReply(v),120)}));
+$('#gonveChatForm')?.addEventListener('submit',e=>{e.preventDefault();submitGonveChat($('#gonveChatInput').value)});
+$$('[data-chat-suggestion]').forEach(b=>b.addEventListener('click',()=>submitGonveChat(b.dataset.chatSuggestion)));
+window.addEventListener('resize',updateChatViewport);
+window.visualViewport?.addEventListener('resize',updateChatViewport);
+window.visualViewport?.addEventListener('scroll',updateChatViewport);
+$('#gonveChat').addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();closeGonveChat();return;}
+  if(e.key!=='Tab'||!window.matchMedia('(max-width:600px)').matches)return;
+  const controls=[...$('#gonveChat').querySelectorAll('button:not(:disabled),input,[tabindex="0"]')].filter(el=>el.getClientRects().length);
+  const first=controls[0],last=controls[controls.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus();}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus();}
+});
 
 savedCategories=uniqueCategories();save(false);applyTheme();applyStore();render();updateFulfillment();loadCentralCatalog();
 
