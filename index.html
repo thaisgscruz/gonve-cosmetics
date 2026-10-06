@@ -72,14 +72,65 @@ a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{c
 .gonve-chat-note{padding:0 13px 10px;color:var(--muted);background:#fff;font-size:9px;line-height:1.35}
 @media(max-width:600px){.gonve-chat-toggle{right:16px;bottom:82px}.gonve-chat{right:14px;bottom:148px;height:68vh}.wa-float{right:16px}}
 </style>
+
+<style id="gonve-compact-cards">
+/* Marca original e vitrine compacta */
+.topbar{padding-block:8px}
+.official-logo{display:block;position:relative;width:100px;aspect-ratio:880/707;overflow:hidden;flex-shrink:0}
+.official-logo img{position:absolute;width:142.5%;max-width:none;height:auto;left:-21.59%;top:-37.48%}
+.topbar .official-logo{mix-blend-mode:multiply}
+.footer-brand .official-logo{width:112px;border-radius:8px}
+.about-art{background:#f9eeea}
+.about-art .official-logo{width:min(340px,85%);mix-blend-mode:multiply}
+.hero{min-height:0;padding-block:36px;gap:clamp(24px,3vw,40px)}
+.hero-visual{min-height:0;height:auto;width:100%;max-width:440px;justify-self:end}
+.hero-products{height:auto;display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.hero-product,.hero-product:first-child{display:grid;grid-template-columns:108px minmax(0,1fr);grid-row:auto;grid-column:auto;min-width:0;border-radius:16px;box-shadow:none}
+.hero-product img,.hero-product:first-child img{width:108px;height:100%;min-height:122px;object-fit:cover}
+.hero-product-copy{padding:12px 14px;display:grid;grid-template-columns:1fr auto;align-content:center;align-items:center;gap:7px 10px;min-width:0}
+.hero-product-copy small{grid-column:1/-1;font-size:10px;letter-spacing:1px;line-height:1.2}
+.hero-product-copy strong{grid-column:1/-1;font-size:18px;line-height:1.25;margin:0;font-weight:600}
+.hero-product-copy .hero-price{font-size:16px;font-weight:700;margin:0;white-space:nowrap}
+.hero-product-copy .btn{width:auto;min-height:36px;padding:7px 13px;font-size:13px;font-weight:600}
+.product-grid{gap:16px}
+.product-card{display:flex;flex-direction:column;min-width:0;border-radius:16px;transition:box-shadow .2s,border-color .2s}
+.product-card:hover{transform:none;border-color:color-mix(in srgb,var(--primary) 35%,var(--border));box-shadow:0 4px 16px rgba(68,45,25,.06)}
+.product-img{aspect-ratio:auto;height:180px;background:#fff}
+.product-img img{object-fit:contain}
+.badge{top:9px;left:9px;padding:5px 8px;font-size:9px;letter-spacing:.7px}
+.product-info{padding:13px;display:flex;flex:1;flex-direction:column;min-width:0}
+.product-category{font-size:10px;letter-spacing:1px}
+.product-info h3{font-size:18px;font-weight:600;line-height:1.3;margin:6px 0 9px;overflow-wrap:anywhere}
+.product-details{margin:0 0 10px;color:var(--muted);font-size:14px}
+.product-details summary{cursor:pointer;list-style-position:inside;line-height:1.5;width:fit-content}
+.product-details summary:hover{color:var(--primary)}
+.product-details p{display:block;font-size:14px;line-height:1.5;min-height:0;margin:10px 0}
+.product-details .product-meta{gap:5px;margin:8px 0 0}
+.product-details .product-meta span{font-size:12px;padding:4px 7px}
+.product-details .product-tones{font-size:13px!important}
+.price-line{margin:auto 0 10px;padding-top:2px;flex-direction:row;flex-wrap:wrap;align-items:center;gap:8px}
+.price-line strong{font-size:17px}
+.buy-row{gap:6px}
+.buy-row .btn{padding:9px 8px;min-height:38px;font-size:13px;font-weight:600;min-width:0}
+@media(max-width:1050px){.hero-visual{max-width:600px;justify-self:center}.footer-brand{justify-content:center}}
+@media(max-width:760px){
+ .topbar .official-logo{width:86px}.hero{padding-block:30px;gap:24px}
+ .hero-visual{height:auto;min-height:0}.hero-products{grid-template-columns:minmax(0,1fr);gap:10px}
+ .hero-product,.hero-product:first-child{grid-template-columns:94px minmax(0,1fr);grid-row:auto;grid-column:auto}
+ .hero-product img,.hero-product:first-child img{width:94px;height:100%;min-height:114px}
+ .hero-product-copy{padding:10px 12px}.hero-product-copy strong{font-size:17px}
+ .product-grid{gap:10px}.product-card{border-radius:12px}.product-img{height:150px}
+ .product-info{padding:11px}.product-info h3{font-size:16px;line-height:1.3}
+ .product-details p{font-size:14px}.product-details .product-meta span{font-size:12px}
+ .buy-row{flex-direction:column}.buy-row .btn{font-size:13px;min-height:38px}
+}
+@media(max-width:380px){.topbar{padding-inline:12px}.header-actions{gap:5px}.cart-btn{padding-inline:10px}.product-img{height:130px}.product-info{padding:9px}.hero-product-copy .btn{padding-inline:10px}}
+</style>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#inicio" aria-label="Gonvé Cosmetics - início">
-      <span class="lotus" aria-hidden="true">
-        <svg viewBox="0 0 64 64" width="36" height="36" style="width:36px;height:36px;display:block;fill:#8f6b3c"><path d="M32 9c-5 9-7 17 0 27 7-10 5-18 0-27Zm-4 27C19 23 10 23 6 24c3 11 10 18 22 16-8-4-13-9-17-14 8 2 14 6 17 10Zm8 0c9-13 18-13 22-12-3 11-10 18-22 16 8-4 13-9 17-14-8 2-14 6-17 10Zm-4 5c-9 0-17-2-23-7 4 11 12 18 23 20 11-2 19-9 23-20-6 5-14 7-23 7Z"/></svg>
-      </span>
-      <span><strong>Gonvé</strong><small>Cosmetics</small></span>
+      <span class="official-logo"><img src="assets/gonve-logo-oficial.jpg" alt="Gonvé Cosmetics — logotipo oficial" width="1254" height="1254"></span>
     </a>
 
     <nav class="nav" aria-label="Navegação principal">
@@ -169,7 +220,7 @@ a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{c
           <div><strong>Gonvé</strong><span>Beleza com carinho</span></div>
         </div>
       </div>
-      <div class="about-art"><span>G</span><small>ONVÉ</small></div>
+      <div class="about-art"><span class="official-logo"><img src="assets/gonve-logo-oficial.jpg" alt="Gonvé Cosmetics — logotipo oficial" width="1254" height="1254"></span></div>
     </section>
 
     <section class="contact section" id="contato">
@@ -184,8 +235,7 @@ a{color:inherit;text-decoration:none}button,input,textarea{font:inherit}button{c
 
   <footer>
     <div class="brand footer-brand">
-      <span class="lotus" aria-hidden="true"><svg viewBox="0 0 64 64" width="36" height="36" style="width:36px;height:36px;display:block;fill:#8f6b3c"><path d="M32 9c-5 9-7 17 0 27 7-10 5-18 0-27Zm-4 27C19 23 10 23 6 24c3 11 10 18 22 16-8-4-13-9-17-14 8 2 14 6 17 10Zm8 0c9-13 18-13 22-12-3 11-10 18-22 16 8-4 13-9 17-14-8 2-14 6-17 10Zm-4 5c-9 0-17-2-23-7 4 11 12 18 23 20 11-2 19-9 23-20-6 5-14 7-23 7Z"/></svg></span>
-      <span><strong>Gonvé</strong><small>Cosmetics</small></span>
+      <span class="official-logo"><img src="assets/gonve-logo-oficial.jpg" alt="Gonvé Cosmetics — logotipo oficial" width="1254" height="1254"></span>
     </div>
     <p>Barueri • SP &nbsp; | &nbsp; (11) 99769-3480</p>
     <small>© <span id="year"></span> Gonvé Cosmetics. Todos os direitos reservados.</small>
@@ -462,7 +512,7 @@ function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show'
 function applyTheme(){document.documentElement.style.setProperty('--primary',theme.primary);document.documentElement.style.setProperty('--secondary',theme.secondary);document.documentElement.style.setProperty('--bg',theme.background);document.documentElement.style.setProperty('--text',theme.text);const h=$('.hero h1');h.innerHTML=theme.heroTitle.replace(/(você\.?)/i,'<em>$1</em>');$('.hero-copy>p').textContent=theme.heroSubtitle;}
 function applyStore(){const phone=store.phone.replace(/\D/g,'');document.querySelectorAll('a[href*="wa.me"]').forEach(a=>a.href=a.href.replace(/wa\.me\/\d+/,`wa.me/${phone}`));const about=$$('.stats div');if(about[0]){about[0].querySelector('strong').textContent=store.location.replace(' • SP','')||'Barueri';about[0].querySelector('span').textContent=store.location.includes('SP')?'São Paulo':store.location;}if(about[1])about[1].querySelector('span').textContent=formatPhone(phone);const foot=$('footer p');if(foot)foot.textContent=`${store.location}   |   ${formatPhone(phone)}`;const contact=$('#contato .btn');if(contact){contact.textContent=`WhatsApp: ${formatPhone(phone)}`;contact.href=waLink('Olá! Quero fazer um pedido na Gonvé Cosmetics.');}renderServiceInfo();}
 function formatPhone(phone){const d=phone.replace(/\D/g,'').replace(/^55/,'');return d.length===11?`(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`:phone;}
-function card(p){const meta=[p.benefit,p.size,p.use].filter(Boolean);return `<article class="product-card"><div class="product-img"><img src="${p.image||placeholder(p.name)}" alt="${p.name}">${p.featured?'<span class="badge">DESTAQUE</span>':''}</div><div class="product-info"><span class="product-category">${p.category}</span><h3>${p.name}</h3><p>${p.description}</p>${meta.length?`<div class="product-meta">${meta.map(x=>`<span>${x}</span>`).join('')}</div>`:''}${p.tones?`<p class="product-tones">Tons: ${p.tones}</p>`:''}<div class="price-line"><strong>${money(p.price)}</strong>${p.oldPrice?`<span class="old-price">${money(p.oldPrice)}</span>`:''}</div><div class="buy-row">${p.stock>0?`<button class="btn primary" onclick="addToCart('${p.id}')">Adicionar</button>`:'<button class="btn primary" disabled style="opacity:.5;cursor:not-allowed">Indisponível</button>'}<a class="btn secondary" target="_blank" rel="noreferrer" href="${waLink(`Olá! Quero saber mais sobre ${p.name} (${money(p.price)}).`)}">WhatsApp</a></div></div></article>`}
+function card(p){const meta=[p.benefit,p.size,p.use].filter(Boolean);return `<article class="product-card"><div class="product-img"><img src="${p.image||placeholder(p.name)}" alt="${p.name}">${p.featured?'<span class="badge">DESTAQUE</span>':''}</div><div class="product-info"><span class="product-category">${p.category}</span><h3>${p.name}</h3><details class="product-details"><summary>Detalhes</summary><p>${p.description}</p>${meta.length?`<div class="product-meta">${meta.map(x=>`<span>${x}</span>`).join('')}</div>`:''}${p.tones?`<p class="product-tones">Tons: ${p.tones}</p>`:''}</details><div class="price-line"><strong>${money(p.price)}</strong>${p.oldPrice?`<span class="old-price">${money(p.oldPrice)}</span>`:''}</div><div class="buy-row">${p.stock>0?`<button class="btn primary" onclick="addToCart('${p.id}')">Adicionar</button>`:'<button class="btn primary" disabled style="opacity:.5;cursor:not-allowed">Indisponível</button>'}<a class="btn secondary" target="_blank" rel="noreferrer" href="${waLink(`Olá! Quero saber mais sobre ${p.name} (${money(p.price)}).`)}">WhatsApp</a></div></div></article>`}
 function renderHero(){
   const picks=products.filter(p=>p.featured&&p.stock>0).slice(0,3);
   const list=picks.length>=3?picks:products.filter(p=>p.stock>0).slice(0,3);
